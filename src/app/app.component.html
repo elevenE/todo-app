@@ -4,15 +4,23 @@
     <h4>Add todo</h4>
     <input class="form-control" type="text" (keyup.enter)="addTodo()" name="new-todo" id="new-todo"
       [(ngModel)]="newTodo" placeholder="Enter new todo">
+    <input class="form-control" type="text" (keyup.enter)="addTodo()" name="new-todo-priority" id="new-todo-priority"
+      [(ngModel)]="newTodoPriority" placeholder="Enter priority"> 
   </div>
 
   <h4>List of todos</h4>
   <ul class="list-group">
     <li *ngFor="let todo of todos" class="list-group-item">
       <div class="row">
-        <p class="col-2">{{ todo }}</p>
-        <button class="btn btn-danger"  (click)="removeTodo(todo)" >x</button>
+        <p class="col-2">{{ todo.name }}, priority: {{ todo?.priority }}</p>
+        <button class="btn btn-danger"  (click)="removeTodo(todo.name)" >remove</button>
       </div>
     </li>
   </ul>
+
+  <h4>Priorities</h4>
+  <p *ngFor="let p of getMultiplePriorities()">{{p }}, {{ multiplePriorities[p] }}</p>
+
+  <h4>Missing Priorities</h4>
+  {{ getMissingPriorities() }}
 </div>
